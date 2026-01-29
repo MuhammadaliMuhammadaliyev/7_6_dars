@@ -1,0 +1,108 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="aniso8601" />
+          <option value="arabic-reshaper" />
+          <option value="asn1crypto" />
+          <option value="async-timeout" />
+          <option value="braintree" />
+          <option value="CacheControl" />
+          <option value="cffi" />
+          <option value="charset-normalizer" />
+          <option value="contextlib2" />
+          <option value="cron-descriptor" />
+          <option value="cryptography" />
+          <option value="cssselect2" />
+          <option value="dateparser" />
+          <option value="defusedxml" />
+          <option value="django-autoslug" />
+          <option value="django-braces" />
+          <option value="django-celery-beat" />
+          <option value="django-celery-results" />
+          <option value="django-debug-toolbar" />
+          <option value="django-discover-runner" />
+          <option value="django-model-utils" />
+          <option value="django-redis-cache" />
+          <option value="django-rename-app" />
+          <option value="django-timezone-field" />
+          <option value="django-tinymce" />
+          <option value="et-xmlfile" />
+          <option value="Faker" />
+          <option value="future" />
+          <option value="graphene" />
+          <option value="graphql-core" />
+          <option value="graphql-relay" />
+          <option value="greenlet" />
+          <option value="html5lib" />
+          <option value="idna" />
+          <option value="ipaddr" />
+          <option value="jdcal" />
+          <option value="jet-bridge-base" />
+          <option value="jet-django" />
+          <option value="lockfile" />
+          <option value="lxml" />
+          <option value="Markdown" />
+          <option value="MarkupPy" />
+          <option value="msgpack" />
+          <option value="oauthlib" />
+          <option value="odfpy" />
+          <option value="openpyxl" />
+          <option value="oscrypto" />
+          <option value="pep517" />
+          <option value="Pillow" />
+          <option value="progress" />
+          <option value="promise" />
+          <option value="psycopg2-binary" />
+          <option value="pycodestyle" />
+          <option value="pycparser" />
+          <option value="pyHanko" />
+          <option value="pyhanko-certvalidator" />
+          <option value="PyJWT" />
+          <option value="pyparsing" />
+          <option value="pypdf" />
+          <option value="PyPDF2" />
+          <option value="pypng" />
+          <option value="python-bidi" />
+          <option value="python-crontab" />
+          <option value="python-slugify" />
+          <option value="python3-openid" />
+          <option value="pytoml" />
+          <option value="pytz" />
+          <option value="pyyaml" />
+          <option value="qrcode" />
+          <option value="redis" />
+          <option value="regex" />
+          <option value="reportlab" />
+          <option value="requests" />
+          <option value="requests-oauthlib" />
+          <option value="retrying" />
+          <option value="Rx" />
+          <option value="social-auth-core" />
+          <option value="SQLAlchemy" />
+          <option value="sslcommerz-lib" />
+          <option value="svglib" />
+          <option value="text-unidecode" />
+          <option value="tinycss2" />
+          <option value="toml" />
+          <option value="tomli" />
+          <option value="uritools" />
+          <option value="webencodings" />
+          <option value="whitenoise" />
+          <option value="xhtml2pdf" />
+          <option value="xlrd" />
+          <option value="xlwt" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="chat.*" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
