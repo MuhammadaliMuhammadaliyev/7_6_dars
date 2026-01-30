@@ -1,17 +1,22 @@
-from django.shortcuts import render
-from rest_framework.generics import CreateAPIView
+import random
 from .serializers import SignUpSerializer, ProfileUpdateSerializer, ChangePasswordSerializer
 from django.contrib.auth.models import User
-from rest_framework.views import APIView
-from rest_framework import status
-from rest_framework.response import Response
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.exceptions import ValidationError
 from rest_framework import permissions
+from .utility import send_simple_email, check_email
+from .models import VerifyCodes
+from django.utils import timezone
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.permissions import AllowAny
 
-from .utility import send_simple_email
+from django.contrib.auth import get_user_model
+from .models import UserVerifyCodes
 
+User = get_user_model()
 
 # Create your views here.
 
@@ -137,14 +142,59 @@ class ChangePasswordView(APIView):
         })
 
 
-class Test(APIView):
+class ForgotView(APIView):
     permission_classes = [permissions.AllowAny]
-    def post(self, request):
-        code = self.request.get('code')
-        user = self.request.get('user_email')
-        send_simple_email(user, code)
 
-        return Response({
-            "success": True,
-            "message": "Kodingiz yuborildi, emailni tekshiring."
-        })
+    def post(self, request):
+        email = self.request.data.get('email')
+        email = check_email(email)
+        if email:
+            user = User.objects.filter(email=email).first()
+            if user is None:
+                raise ValidationError('Bu email bizda mavjud emas')
+
+            code = random.randint(1000, 9999)
+            VerifyCodes.objects.create(
+                user=user,
+                code=code
+            )
+
+            data = {
+                'status': status.HTTP_200_OK,
+                'message': 'Kodingiz yuborildi'
+            }
+            return Response(data)
+
+        data = {
+            'status': status.HTTP_200_OK,
+            'message': 'Kodingiz yuborildi'
+        }
+
+        return Response(data)
+
+
+class ResetCodeView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        email = request.data.get("email")
+        code = request.data.get("code")
+
+        if not email or not code:
+            return Response({"detail": "email va code majburiy"}, status=400)
+
+        user = User.objects.filter(email=email).first()
+        if not user:
+            return Response({"detail": "Bu email bilan user topilmadi"}, status=404)
+
+        vc = VerifyCodes.objects.filter(user=user, code=code, is_active=False).first()
+        if not vc:
+            return Response({"detail": "Kod noto‘g‘ri yoki ishlatilgan"}, status=400)
+
+        if vc.expiration_time < timezone.now():
+            return Response({"detail": "Kod muddati tugagan"}, status=400)
+
+        vc.is_active = True
+        vc.save(update_fields=["is_active"])
+
+        return Response({"detail": "Kod tasdiqlandi"}, status=200)

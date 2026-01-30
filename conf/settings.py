@@ -161,3 +161,6 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'ab2754315@gmail.com'
 EMAIL_HOST_PASSWORD = 'uwil kkmy dorh komh'
 DEFAULT_FROM_EMAIL = 'ab2754315@gmail.com'
+
+
+EXPIRATION_TIME_EMAIL = 2
